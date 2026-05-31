@@ -1,4 +1,4 @@
-/* Uma Gacha Planner Site v1.2 - static HTML module */
+/* Uma Gacha Planner Site v1.3 - static HTML module */
 (function(){
 'use strict';
 
@@ -174,7 +174,7 @@ class Planner{
     const startJewelCls=r.start.jewels<0?'negative':'';const afterCls=r.after.jewels<0?'negative':'positive';
     return `<article class="card gacha-card ${active?'active':''} ${r.completed?'completed':''}">
       <div class="banner-art"><div><span class="pickup-no">PICKUP #${g.number}</span><div class="pickup-title">${esc(g.sourceTitle||g.pickupNames.join(', '))}</div></div><div class="pickup-date">${esc(g.startDate)} ~ ${esc(g.endDate)}</div></div>
-      <div class="gacha-body"><div class="gacha-top"><div><div class="gacha-title">#${g.number} ${esc(g.pickupNames.join(', ')||titlePlain(g.sourceTitle))}</div><div class="badges">${modeBadges}${g.plannedDefault?'<span class="badge plan">엑셀 체크</span>':''}${r.skipped?'<span class="badge skip">숨김</span>':''}${p.freePulls?`<span class="badge free">무료 ${num(p.freePulls)}연</span>`:''}${r.completed?'<span class="badge done">완료</span>':''}</div></div></div>
+      <div class="gacha-body"><div class="gacha-top"><div><div class="gacha-title">#${g.number} ${esc(g.pickupNames.join(', ')||titlePlain(g.sourceTitle))}</div><div class="badges">${modeBadges}${g.plannedDefault?'<span class="badge plan">계획 선택</span>':''}${r.skipped?'<span class="badge skip">숨김</span>':''}${p.freePulls?`<span class="badge free">무료 ${num(p.freePulls)}연</span>`:''}${r.completed?'<span class="badge done">완료</span>':''}</div></div></div>
       <ul class="pickups">${pick}</ul>
       <div class="info-grid"><div class="info"><label>시작 시 주얼</label><b class="${startJewelCls}">${num(Math.floor(r.start.jewels))}</b></div><div class="info"><label>시작 말/서폿 티켓</label><b>${num(Math.floor(r.start.characterTickets))} / ${num(Math.floor(r.start.supportTickets))}</b></div><div class="info"><label>기간 수입</label><b>+${num(Math.floor(r.start.income))}</b><span class="small">말 +${num(Math.floor(r.start.addCt||0))} / 서 +${num(Math.floor(r.start.addSt||0))} / 조각 +${num(Math.floor(r.start.addLb||0))}</span></div><div class="info"><label>차감 후 주얼</label><b class="${afterCls}">${num(Math.floor(r.after.jewels))}</b></div></div>
       <div class="edit-grid"><div class="field"><label>무료뽑</label><input type="number" min="0" data-gid="${g.id}" data-field="freePulls" value="${p.freePulls||0}"></div><div class="field"><label>예정/추가 주얼 사용</label><input type="number" min="0" step="150" data-gid="${g.id}" data-field="manualJewelUse" value="${p.manualJewelUse||0}"></div><div class="field"><label>추가 수입 보정</label><input type="number" step="1" data-gid="${g.id}" data-field="extraJewelIncome" value="${p.extraJewelIncome||0}"></div><div class="info"><label>시뮬 사용</label><b>${num(r.used.jewels)} 주얼 / ${num(r.used.free)} 무료</b></div><div class="info"><label>교환 Pt</label><b>${this.ceilingText(p)}</b></div></div>
